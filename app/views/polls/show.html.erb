@@ -1,0 +1,23 @@
+<h1>Polls#show</h1>
+<p>Find me in app/views/polls/show.html.erb</p>
+
+<!-- this shows the actual questions to the poll -->
+
+<p>
+<b><%= @poll.title %> Questions</b>
+</p>
+
+<% if @admin_key %>
+  Your admin edit URL is: http://localhost:3000/polls/<%= @admin_key %>/edit<br />
+
+  The poll's public URL is: <%= link_to 'localhost:3000/show/:id', poll_path(@poll.id) %><br />
+
+<% else %>
+
+  Here are the polls questions!
+
+<% end %>
+
+
+
+
