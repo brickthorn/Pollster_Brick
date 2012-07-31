@@ -3,18 +3,34 @@
 
 <!-- this shows the actual questions to the poll -->
 
-<p>
-<b><%= @poll.title %> Questions</b>
-</p>
+<b><%= @poll.title %></b>
 
 <% if @admin_key %>
-  Your admin edit URL is: http://localhost:3000/polls/<%= @admin_key %>/edit<br />
 
-  The poll's public URL is: <%= link_to 'localhost:3000/show/:id', poll_path(@poll.id) %><br />
+<%= link_to 'Edit Title', edit_poll_path(@poll.admin_token) %>
+<br />
+
+  The poll's public URL is: <%= link_to "localhost:3000/poll/#{@poll.id}", poll_path(@poll.id) %><br />
+
+  <p>
+  <i><%= @poll.title %> Questions</i>
+  </p>
+  <% Question.where(:poll_id => @poll.id).each do |question|  %>
+  <li> <%= question.body %>
+    <%= link_to 'Edit', edit_question_path(question.id) %>
+    <%= link_to 'Delete', question_path(question.id), :method => :delete %><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answers coming soon!  <br />
+  <% end %>
+
+  <p>
+    <%= link_to 'Add A Question', new_question_path(:poll => @poll) %>
+  </p>
 
 <% else %>
 
-  Here are the polls questions!
+<br />
+
+  This is what you see if you don't have the admin key!
 
 <% end %>
 

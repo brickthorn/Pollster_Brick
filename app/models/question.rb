@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  attr_accessible :answer, :body, :poll_id
+  attr_accessible :answer, :body, :poll
 
   belongs_to :poll
 

@@ -1,21 +1,20 @@
 BrickPollster::Application.routes.draw do
 
-  get "questions/new"
-
-  get "questions/edit"
-
-  get "questions/create"
-
-  get "questions/update"
-
-  get "questions/delete"
 
   root :to => "polls#index"
 
   match '/polls/:id/admin/:admin_token' => 'polls#show'
-#  match '/polls/admin_edit/:admin_token' => 'polls#edit'
+  # match '/polls/:id/question/:admin_token' => 'polls#show'
 
-  resources :polls
+  resources :polls do
+    resources :questions, :responses
+  end
+
+  resources :questions, :answers
+
+  resources :responses do
+    resources :answers
+  end
 
 
   # The priority is based upon order of creation:

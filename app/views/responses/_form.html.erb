@@ -1,0 +1,27 @@
+
+<%= form_for ([@poll, @response]) do |f| %>
+  <% if @response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@response.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @response.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% testing = "Testing putting a string in here" %>
+  <%= f.fields_for :answers do |builder| %>
+  <p>
+    <%= builder.label :body, testing %><br />
+    <%= builder.text_area :body, :rows => 3 %>
+  </p>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

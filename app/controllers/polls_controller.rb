@@ -39,10 +39,12 @@ class PollsController < ApplicationController
 
 
   def show
+    @poll = Poll.find(params[:id])
     if params[:admin_token]
       @admin_key = params[:admin_token]
+    else
+      redirect_to new_poll_response_path(@poll.id)
     end
-    @poll = Poll.find(params[:id])
     # this can be delineated by the url 'take_poll/'
   end
 

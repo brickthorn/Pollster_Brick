@@ -9,7 +9,8 @@
 <table>
   <% @polls.each_with_index do |poll, i| %>
   <tr><td> <%= i+1 %>. </td>
-  <td> <%= link_to poll.title, edit_poll_path(poll.admin_token) %></td>
+
+    <td> <%= link_to poll.title, "/polls/#{poll.id}/admin/#{poll.admin_token}" %></td>
   </tr>
 <% end %>
 </table>
