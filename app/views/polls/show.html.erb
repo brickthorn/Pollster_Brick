@@ -16,10 +16,12 @@
   <i><%= @poll.title %> Questions</i>
   </p>
   <% Question.where(:poll_id => @poll.id).each do |question|  %>
-  <li> <%= question.body %>
+  <li> <%= question.body %>  <%= question.id %>    <!-- DELETE QUESTION ID AFTER TESTING -->
     <%= link_to 'Edit', edit_question_path(question.id) %>
     <%= link_to 'Delete', question_path(question.id), :method => :delete %><br />
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answers coming soon!  <br />
+    <ul> <% Answer.where(:question_id => question.id).each do |answer|  %>
+      <li><%= answer.body %>
+    <% end %></ul>
   <% end %>
 
   <p>

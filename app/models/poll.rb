@@ -1,6 +1,8 @@
 class Poll < ActiveRecord::Base
   attr_accessible :admin_token, :public_url, :title
 
+  validates_presence_of :title
+
   has_many :questions
 
   validates_uniqueness_of :admin_token

@@ -12,14 +12,29 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'quiet_assets'
 gem 'thin'
 
-group :development, :test do
+group :development do
   gem 'sqlite3'
+  gem "rspec-rails", "~> 2.0"
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'simplecov'
+  gem 'shoulda-matchers'
 end
+
+group :test do
+  gem 'rspec'
+  gem 'growl'
+  gem 'rb-fsevent'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'simplecov'
+  gem 'shoulda-matchers'
+end
+
 
 group :production do
   gem 'pg'
 end
-
 
 
 # Gems used only for assets and not required

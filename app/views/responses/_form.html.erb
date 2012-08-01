@@ -1,5 +1,7 @@
 
-<%= form_for ([@poll, @response]) do |f| %>
+<h1><%= @poll.title %></h1>
+
+<%= form_for @response do |f| %>
   <% if @response.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@response.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -12,16 +14,14 @@
     </div>
   <% end %>
 
-  <% testing = "Testing putting a string in here" %>
-  <%= f.fields_for :answers do |builder| %>
-  <p>
-    <%= builder.label :body, testing %><br />
-    <%= builder.text_area :body, :rows => 3 %>
-  </p>
+  <% @questions.each_with_index do |question, i|  %>
+  <%= (i+1) %>. <%=  question.body %><br />
+  <%= text_field_tag "answer-#{question.id}" %> <br />
   <% end %>
-
+  <%= f.hidden_field  :poll_id, { :value => @poll.id } %>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
 
+<!-- try changing this into a poll for only @poll, with the questions being accessed individually then all the answers -->
